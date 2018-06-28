@@ -9,10 +9,56 @@
         <title>PrimeFaces Test</title>
     </h:head>
     <h:body>
+    <h:form id="myForm">
+        <p:dataTable id="personTable" value="#{testView.data}" var="data" multiViewState="true" draggableColumns="true">
+            <p:ajax event="colReorder"/>
+            <p:column id="fName">
+                <f:facet name="header">
+                    First Name
+                </f:facet>
+                #{data.firstname}
+            </p:column>
+            <p:column id="mName" rendered="#{testView.showMiddleName}">
+                <f:facet name="header">
+                    Middle Name
+                </f:facet>
+                #{data.middlename}
+            </p:column>
+            <p:column id="lName">
+                <f:facet name="header">
+                    Last Name
+                </f:facet>
+                #{data.lastname}
+            </p:column>
+        </p:dataTable>
 
-        <h1>#{testView.testString}</h1>
+        <br/><br/><br/>
 
-        <h1>#{testViewCdi.testString}</h1>
+        <p:dataTable id="personTable2" value="#{testView.data}" var="data">
+            <p:ajax event="colReorder"/>
+            <p:column id="fName">
+                <f:facet name="header">
+                    First Name
+                </f:facet>
+                #{data.firstname}
+            </p:column>
+            <p:column id="mName" rendered="#{testView.showMiddleName}">
+                <f:facet name="header">
+                    Middle Name
+                </f:facet>
+                #{data.middlename}
+            </p:column>
+            <p:column id="lName">
+                <f:facet name="header">
+                    Last Name
+                </f:facet>
+                #{data.lastname}
+            </p:column>
+        </p:dataTable>
 
+        <br/><br/><br/>
+
+        <p:commandButton value="ToggleMiddleName" actionListener="#{testView.toggleMiddleName}" update="personTable personTable2"/>
+    </h:form>
     </h:body>
 </html>

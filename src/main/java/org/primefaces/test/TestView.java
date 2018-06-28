@@ -9,18 +9,30 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class TestView implements Serializable {
     
-    private String testString;
-    
-    @PostConstruct  
-    public void init() {
-        testString = "Welcome to PrimeFaces!!!";
+    private boolean showMiddleName=true;
+
+    private Person[] data = new Person[]{
+        new Person("Rachel", "Karen", "Green"),
+        new Person("Monica", "E.", "Geller-Bing"),
+        new Person("Phoebe", null, "Buffay-Hannigan"),
+        new Person("Joseph", "Francis", "Tribbiani"),
+        new Person("Chandler", "Muriel", "Bing"),
+        new Person("Ross", "Eustace", "Geller"),
+    };
+
+    public Person[] getData() {
+        return data;
     }
 
-    public String getTestString() {
-        return testString;
+    public boolean getShowMiddleName() {
+        return showMiddleName;
     }
 
-    public void setTestString(String testString) {
-        this.testString = testString;
-    }    
+    public void setShowMiddleName(boolean shoeMiddleName) {
+        this.showMiddleName = shoeMiddleName;
+    }
+
+    public void toggleMiddleName() {
+        showMiddleName = !showMiddleName;
+    }
 }
